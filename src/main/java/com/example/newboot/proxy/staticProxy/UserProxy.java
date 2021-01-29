@@ -5,7 +5,7 @@ public class UserProxy {
     public UserProxy(UserDao userDao){
         this.userDao = userDao;
     }
-    public void saveUser(){
+    public void saveUserP(){
         System.out.println("---代理开始---");
         userDao.saveUser();
         System.out.println("---代理结束---");

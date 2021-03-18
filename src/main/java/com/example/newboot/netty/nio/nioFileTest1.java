@@ -16,32 +16,39 @@ public class nioFileTest1 {
 
     public static void main(String[] args) {
         try {
-            nioFileChannel();
+            String str = nioFileChannel();
+            System.out.println(str);
         } catch (IOException e) {
             log.error("error: {}", e);
         }
     }
 
-    public static void nioFileChannel() throws IOException {
+    public static String nioFileChannel() throws IOException {
         //读文件
         FileInputStream fileInputStream = new FileInputStream("ts.txt");
         FileChannel channelin = fileInputStream.getChannel();
         ByteBuffer byteBuffer = ByteBuffer.allocate(512);
         //写文件
-        FileOutputStream fileOutputStream = new FileOutputStream("ts2.txt");
-        FileChannel channelout = fileOutputStream.getChannel();
+//        FileOutputStream fileOutputStream = new FileOutputStream("ts2.txt");
+//        FileChannel channelout = fileOutputStream.getChannel();
+
+        StringBuilder stringBuilder = new StringBuilder();
 
         int len = 0;
         while (true) {
             byteBuffer.clear();
             len = channelin.read(byteBuffer);
             if (len == -1) break;
-            log.info("文件内容：{}", new String(byteBuffer.array()));
-            byteBuffer.flip();
-            channelout.write(byteBuffer);
+            //     log.info("文件内容：{}", new String(byteBuffer.array()));
+            stringBuilder.append(new String(byteBuffer.array()));
+
+//            byteBuffer.flip();
+
+//            channelout.write(byteBuffer);
         }
         fileInputStream.close();
-        fileOutputStream.close();
+//        fileOutputStream.close();
+        return stringBuilder.toString();
     }
 
 }

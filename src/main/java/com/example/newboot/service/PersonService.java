@@ -13,13 +13,21 @@ import org.springframework.stereotype.Service;
 public class PersonService implements BeanFactoryAware {
     private BeanFactory beanFactory;
 
+
     @Override
     public void setBeanFactory(BeanFactory beanFactory) throws BeansException {
         this.beanFactory = beanFactory;
     }
 
+    @Bean("myBeanFactory")
+    public BeanFactory myBeanFactory(){
+        return beanFactory;
+    }
+
+
     public Person add() {
         Person person = (Person) beanFactory.getBean("person");
         return person;
     }
+
 }

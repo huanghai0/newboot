@@ -6,7 +6,6 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.newboot.entity.Student;
 import com.example.newboot.mapper.StudentDao;
-import com.example.newboot.service.MyAerospikeService;
 import com.example.newboot.utils.http.JdkHttp;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,13 +30,7 @@ class NewbootApplicationTests {
     @Autowired
     private StudentDao studentDao;
 
-    @Autowired
-    private MyAerospikeService myAerospikeService;
 
-    @Test
-    public void serviceTest() {
-        myAerospikeService.doWork();
-    }
 
     @Test
     public void delete() {
@@ -56,7 +49,7 @@ class NewbootApplicationTests {
     @Test
     public void insert() {
         Student student = new Student();
-        student.setName("Tom2");
+        student.setName("Tom6");
         student.setAge(18);
         student.setSex('男');
         studentDao.insert(student);

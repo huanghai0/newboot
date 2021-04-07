@@ -29,8 +29,8 @@ public class nioFileTest1 {
         FileChannel channelin = fileInputStream.getChannel();
         ByteBuffer byteBuffer = ByteBuffer.allocate(512);
         //写文件
-//        FileOutputStream fileOutputStream = new FileOutputStream("ts2.txt");
-//        FileChannel channelout = fileOutputStream.getChannel();
+        FileOutputStream fileOutputStream = new FileOutputStream("ts2.txt");
+        FileChannel channelout = fileOutputStream.getChannel();
 
         StringBuilder stringBuilder = new StringBuilder();
 
@@ -42,12 +42,12 @@ public class nioFileTest1 {
             //     log.info("文件内容：{}", new String(byteBuffer.array()));
             stringBuilder.append(new String(byteBuffer.array()));
 
-//            byteBuffer.flip();
+            byteBuffer.flip();
 
-//            channelout.write(byteBuffer);
+            channelout.write(byteBuffer);
         }
         fileInputStream.close();
-//        fileOutputStream.close();
+        fileOutputStream.close();
         return stringBuilder.toString();
     }
 

@@ -1,6 +1,18 @@
 server:
   port: 8080
 
+# logging
+logging.config: ./logback.xml
+logging.level:
+  cn.com.bsfit.portal.mapper: INFO
+  com.atomikos: INFO
+  jdbc: #SQL相关日志
+    audit: ERROR #输出除了ResultSet外的所有JDBC调用情况。一般不需要
+    sqlonly: ERROR #只输出SQL，不输出执行时间
+    sqltiming: INFO #输出SQL和执行时间 ERROR OR INFO OR DEBUG
+    resultset: ERROR #输出返回结果集
+    connection: ERROR #输出连接情况
+    resultsettable: ERROR #输出执行SQL和结果集
 
 spring:
   redis:

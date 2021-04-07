@@ -25,11 +25,11 @@ public class Hello {
 
     @Autowired
     @Qualifier("myBeanFactory")
-    private BeanFactory beanFactory;
+    public  BeanFactory beanFactory;
 
     @Autowired()
     @Qualifier("getRuleMap")
-    private Map<String, String> ruleMap;
+    public Map<String, String> ruleMap;
 
     @GetMapping("hello")
     @ResponseBody
@@ -39,7 +39,7 @@ public class Hello {
 
     @GetMapping("bean")
     @ResponseBody
-    private String getPerson() {
+    public String getPerson() {
         Person person = personService2.add();
         if (person != null) return "seccseful";
         return "fail";
@@ -47,7 +47,7 @@ public class Hello {
 
     @GetMapping("map")
     @ResponseBody
-    private String getMap() {
+    public String getMap() {
         StringBuffer stringBuffer = new StringBuffer();
         ruleMap.entrySet().parallelStream().forEach((entry) -> {
             stringBuffer.append(entry.getKey() + ": " + entry.getValue() + "\n");

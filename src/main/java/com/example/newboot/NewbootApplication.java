@@ -10,8 +10,8 @@ import org.springframework.context.ApplicationContext;
 
 @SpringBootApplication
 @MapperScan("com/example/newboot/mapper")
-//public class NewbootApplication implements CommandLineRunner {
-public class NewbootApplication{
+public class NewbootApplication implements CommandLineRunner {
+//public class NewbootApplication{
     @Autowired
     private DiscardServer discardServer;
 
@@ -20,8 +20,8 @@ public class NewbootApplication{
 
     }
 
-//    @Override
-//    public void run(String... args) throws Exception {
-//        discardServer.run(8081);
-//    }
+    @Override
+    public void run(String... args) throws Exception {
+        discardServer.run(8081);
+    }
 }

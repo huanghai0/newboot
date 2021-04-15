@@ -18,6 +18,6 @@ public class ChildChannelHandler extends ChannelInitializer<Channel> {
 
     @Override
     protected void initChannel(Channel channel) throws Exception {
-        channel.pipeline().addLast(discardServerHandler);
+        channel.pipeline().addLast(new TimeEncoder(),discardServerHandler);
     }
 }

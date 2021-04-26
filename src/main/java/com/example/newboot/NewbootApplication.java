@@ -9,8 +9,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 @MapperScan("com/example/newboot/mapper")
-public class NewbootApplication implements CommandLineRunner {
-    //public class NewbootApplication{
+//public class NewbootApplication implements CommandLineRunner {
+public class NewbootApplication {
     @Autowired
     private DiscardServer discardServer;
 
@@ -21,10 +21,10 @@ public class NewbootApplication implements CommandLineRunner {
 
     }
 
-    @Override
-    public void run(String... args) throws Exception {
-        System.out.println("3!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-        discardServer.run(8081);
-        System.out.println("4!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-    }
+//    @Override
+//    public void run(String... args) throws Exception {
+//        System.out.println("3!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+//        discardServer.run(8081);
+//        System.out.println("4!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+//    }
 }

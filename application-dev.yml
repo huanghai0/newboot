@@ -14,6 +14,29 @@ logging.level:
     connection: ERROR #输出连接情况
     resultsettable: ERROR #输出执行SQL和结果集
 
+frms:
+  workflow:
+    kafka:
+      kafka-brokers: 192.168.2.2:9092
+      compression-type: gzip
+      #会话的超时限制，单位毫秒
+      session-timeout: 15000
+      retries: 0
+      production:
+        enable: true
+        enable-compress: false
+        group-id: workflow-engine-application-production
+        enable-final-state-delayed-replica: true
+        final-state-replica-delay: PT10S
+      simulation:
+        enable: false
+        enable-compress: false
+        group-id: workflow-engine-application-simulation
+        enable-final-state-delayed-replica: true
+        final-state-replica-delay: PT10S
+      indicator:
+        enable: true
+
 spring:
   redis:
     host: 192.168.2.2

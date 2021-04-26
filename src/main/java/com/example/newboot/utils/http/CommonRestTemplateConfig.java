@@ -32,81 +32,81 @@ import java.util.List;
  * @author  may
  * @version V3.7.0
  */
-@Configuration
-public class CommonRestTemplateConfig {
-
-
-
-    @Value("${mgr.restTemplate.pool.size:5}")
-    private int poolSize;
-
-    @Value("${namelist.url:http://localhost:10021}")
-    private String namelistUrl;
-    @Value("${namelist.context-path:/rs/portal/}")
-    private String contextPath;
-    @Value("${namelist.username:admin}")
-    private String nlname;
-    @Value("${namelist.password:bangsun}")
-    private String nlpwd;
-
-
-    @Bean
-    public RestTemplate commonRestTemplate() {
-
-        PoolingHttpClientConnectionManager connMgr = new PoolingHttpClientConnectionManager();
-        connMgr.setMaxTotal(poolSize + 1);
-        connMgr.setDefaultMaxPerRoute(poolSize);
-
-        CloseableHttpClient httpClient = HttpClients.custom()
-                .setConnectionManager(connMgr).build();
-
-        List<HttpMessageConverter<?>> converters = init();
-
-        HttpComponentsClientHttpRequestFactory requestFactory = new HttpComponentsClientHttpRequestFactory(httpClient);
-        // 数据读取超时时间，即SocketTimeout
-        requestFactory.setReadTimeout(30000);
-        // 连接超时
-        requestFactory.setConnectTimeout(3000);
-        // 连接不够用的等待时间
-        requestFactory.setConnectionRequestTimeout(3000);
-        RestTemplate restTemplate = new RestTemplate(requestFactory);
-        restTemplate.setMessageConverters(converters);
-
-        return restTemplate;
-    }
-
-    @Bean
-    @ConditionalOnProperty(prefix = "namelist", value = { "url", "username", "password" })
-    public RestTemplate namelistRestTemplate() throws URISyntaxException {
-        URI uri = new URI(namelistUrl + contextPath);
-        CredentialsProvider credsProvider = new BasicCredentialsProvider();
-        credsProvider.setCredentials(new AuthScope(uri.getHost(), uri.getPort()),
-                new UsernamePasswordCredentials(nlname, nlpwd));
-        HttpClient httpClient = HttpClients.custom().setDefaultCredentialsProvider(credsProvider)
-                .setConnectionManager(new PoolingHttpClientConnectionManager()).build();
-
-        List<HttpMessageConverter<?>> converters = init();
-
-        ClientHttpRequestFactory requestFactory = new HttpComponentsClientHttpRequestFactory(httpClient);
-        RestTemplate restTemplate = new RestTemplate(requestFactory);
-        restTemplate.setMessageConverters(converters);
-
-        return restTemplate;
-    }
-
-
-    private List<HttpMessageConverter<?>> init(){
-        FastJsonHttpMessageConverter fastjson = new FastJsonHttpMessageConverter();
-
-        FastJsonConfig fastJsonConfig = new FastJsonConfig();
-        fastJsonConfig.setSerializerFeatures(SerializerFeature.BrowserCompatible, SerializerFeature.DisableCircularReferenceDetect);
-        fastjson.setFastJsonConfig(fastJsonConfig);
-
-        List<HttpMessageConverter<?>> messageConverters = Lists.newArrayListWithCapacity(1);
-        messageConverters.add(fastjson);
-
-        return messageConverters;
-    }
-
-
-}
+//@Configuration
+//public class CommonRestTemplateConfig {
+//
+//
+//
+//    @Value("${mgr.restTemplate.pool.size:5}")
+//    private int poolSize;
+//
+//    @Value("${namelist.url:http://localhost:10021}")
+//    private String namelistUrl;
+//    @Value("${namelist.context-path:/rs/portal/}")
+//    private String contextPath;
+//    @Value("${namelist.username:admin}")
+//    private String nlname;
+//    @Value("${namelist.password:bangsun}")
+//    private String nlpwd;
+//
+//
+//    @Bean
+//    public RestTemplate commonRestTemplate() {
+//
+//        PoolingHttpClientConnectionManager connMgr = new PoolingHttpClientConnectionManager();
+//        connMgr.setMaxTotal(poolSize + 1);
+//        connMgr.setDefaultMaxPerRoute(poolSize);
+//
+//        CloseableHttpClient httpClient = HttpClients.custom()
+//                .setConnectionManager(connMgr).build();
+//
+//        List<HttpMessageConverter<?>> converters = init();
+//
+//        HttpComponentsClientHttpRequestFactory requestFactory = new HttpComponentsClientHttpRequestFactory(httpClient);
+//        // 数据读取超时时间，即SocketTimeout
+//        requestFactory.setReadTimeout(30000);
+//        // 连接超时
+//        requestFactory.setConnectTimeout(3000);
+//        // 连接不够用的等待时间
+//        requestFactory.setConnectionRequestTimeout(3000);
+//        RestTemplate restTemplate = new RestTemplate(requestFactory);
+//        restTemplate.setMessageConverters(converters);
+//
+//        return restTemplate;
+//    }
+//
+//    @Bean
+//    @ConditionalOnProperty(prefix = "namelist", value = { "url", "username", "password" })
+//    public RestTemplate namelistRestTemplate() throws URISyntaxException {
+//        URI uri = new URI(namelistUrl + contextPath);
+//        CredentialsProvider credsProvider = new BasicCredentialsProvider();
+//        credsProvider.setCredentials(new AuthScope(uri.getHost(), uri.getPort()),
+//                new UsernamePasswordCredentials(nlname, nlpwd));
+//        HttpClient httpClient = HttpClients.custom().setDefaultCredentialsProvider(credsProvider)
+//                .setConnectionManager(new PoolingHttpClientConnectionManager()).build();
+//
+//        List<HttpMessageConverter<?>> converters = init();
+//
+//        ClientHttpRequestFactory requestFactory = new HttpComponentsClientHttpRequestFactory(httpClient);
+//        RestTemplate restTemplate = new RestTemplate(requestFactory);
+//        restTemplate.setMessageConverters(converters);
+//
+//        return restTemplate;
+//    }
+//
+//
+//    private List<HttpMessageConverter<?>> init(){
+//        FastJsonHttpMessageConverter fastjson = new FastJsonHttpMessageConverter();
+//
+//        FastJsonConfig fastJsonConfig = new FastJsonConfig();
+//        fastJsonConfig.setSerializerFeatures(SerializerFeature.BrowserCompatible, SerializerFeature.DisableCircularReferenceDetect);
+//        fastjson.setFastJsonConfig(fastJsonConfig);
+//
+//        List<HttpMessageConverter<?>> messageConverters = Lists.newArrayListWithCapacity(1);
+//        messageConverters.add(fastjson);
+//
+//        return messageConverters;
+//    }
+//
+//
+//}

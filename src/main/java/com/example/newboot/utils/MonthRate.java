@@ -1,5 +1,8 @@
 package com.example.newboot.utils;
 
+/**
+ * 月利率计算
+ */
 public class MonthRate {
     public static double rate(double a, double b, double c, int cnt, int ina) {
         double rate = 1D, x, jd = 0.1D, side = 0.1D, i = 1D;
